@@ -4,6 +4,7 @@
  */
 package Ejercicio03;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmEjercicio03 extends javax.swing.JFrame {
     VectorClientes vector = new VectorClientes();
     DefaultTableModel tabla1 = new DefaultTableModel();
-    DefaultTableModel tabla2s = new DefaultTableModel();
+    DefaultTableModel tabla2 = new DefaultTableModel();
     public FrmEjercicio03() {
         initComponents();
     }
@@ -39,7 +40,7 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
-        txtCodigoBuscar = new javax.swing.JTextField();
+        txtNombreBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
@@ -136,7 +137,7 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblClientes);
 
-        txtCodigoBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar Codigo a Buscar: "));
+        txtNombreBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar Nombre a Buscar: "));
 
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +169,7 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, Short.MAX_VALUE)))
@@ -197,7 +198,7 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,7 +228,8 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        
+        vector.ordenarPorNombre();
+        vector.mostrar(tabla1);
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -235,7 +237,11 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+        if(!vector.mostrarEncontrado(tabla2, txtNombreBuscar.getText()))
+            JOptionPane.showMessageDialog(null, "El nombre no se encuentra en el registro");
+        txtNombreBuscar.setText("");
+        txtNombreBuscar.requestFocus();
+        tblCliente.setModel(tabla2);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -265,8 +271,8 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
     private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCodigoBuscar;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreBuscar;
     private javax.swing.JTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
 }
