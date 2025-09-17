@@ -4,12 +4,17 @@
  */
 package Ejercicio04;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
  */
 public class FrmEjercicio04 extends javax.swing.JFrame {
-
+    VectorProducto vector = new VectorProducto();
+    DefaultTableModel tabla1 = new DefaultTableModel();
+    DefaultTableModel tabla2 = new DefaultTableModel();
     /**
      * Creates new form FrmEjercicio04
      */
@@ -40,11 +45,11 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblClientes = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         txtCodigoBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblCliente = new javax.swing.JTable();
+        tblProducto = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,7 +148,7 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
             }
         });
 
-        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -154,7 +159,7 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblClientes);
+        jScrollPane1.setViewportView(tblProductos);
 
         txtCodigoBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar Codigo a Buscar: "));
 
@@ -165,7 +170,7 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
             }
         });
 
-        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tblProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -176,7 +181,7 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(tblCliente);
+        jScrollPane2.setViewportView(tblProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,8 +197,7 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
                                 .addGap(109, 109, 109)
                                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(79, 79, 79)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13))))
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -231,11 +235,23 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        array.agregar(Integer.parseInt(txtNumero.getText()));
-        txtNumero.setText("");
-        txtNumero.requestFocus();
-        array.mostrar(lista);
-        lstNumeros.setModel(lista);
+        String codigo, descripcion, categoria;
+        int stock;
+        double precio;
+        codigo = txtCodigo.getText();
+        descripcion = txtDescripcion.getText();
+        precio = Double.parseDouble(txtPrecio.getText());
+        stock = Integer.parseInt(txtStock.getText());
+        categoria = cmbCategoria.getSelectedItem().toString();
+        Producto producto = new Producto(codigo, descripcion,precio,stock, categoria);
+        vector.agregar(producto);
+        vector.mostrar(tabla1);
+        tblProductos.setModel(tabla1);
+        txtCodigo.setText("");
+        txtDescripcion.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        cmbCategoria.setSelectedIndex(0);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -243,9 +259,12 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        array.mostrar(modelo, txtCodigoBuscar.getText());
-        txtCodigo.setText("");
-        tblCliente.setModel(modelo);
+
+        if(!vector.mostrarEncontrado(tabla2,txtCodigoBuscar.getText()))
+            JOptionPane.showMessageDialog(null,"El codigo no le pertenece a ningun producto","ERROR",0);
+        txtCodigoBuscar.setText("");
+        tblProducto.setModel(tabla2);
+         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
@@ -270,8 +289,8 @@ public class FrmEjercicio04 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblCliente;
-    private javax.swing.JTable tblClientes;
+    private javax.swing.JTable tblProducto;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoBuscar;
     private javax.swing.JTextField txtDescripcion;

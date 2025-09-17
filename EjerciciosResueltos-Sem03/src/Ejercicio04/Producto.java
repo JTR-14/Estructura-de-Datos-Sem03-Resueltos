@@ -8,16 +8,27 @@ package Ejercicio04;
 public class Producto {
     private String codigo;
     private String descripcion;
+    private double precio;
     private int stock;
     private String categoria;
 
-    public Producto(String codigo, String descripcion, int stock, String categoria) {
+    public Producto(String codigo, String descripcion, double precio, int stock, String categoria) {
         this.codigo = codigo;
         this.descripcion = descripcion;
+        this.precio = precio;
         this.stock = stock;
         this.categoria = categoria;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+   
     public String getCodigo() {
         return codigo;
     }
