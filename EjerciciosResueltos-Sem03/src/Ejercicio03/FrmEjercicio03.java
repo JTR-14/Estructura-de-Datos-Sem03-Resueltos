@@ -4,15 +4,16 @@
  */
 package Ejercicio03;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
  */
 public class FrmEjercicio03 extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmEjercicio03
-     */
+    VectorClientes vector = new VectorClientes();
+    DefaultTableModel tabla1 = new DefaultTableModel();
+    DefaultTableModel tabla2s = new DefaultTableModel();
     public FrmEjercicio03() {
         initComponents();
     }
@@ -54,6 +55,18 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
 
         jLabel3.setText("Ingrese Saldo:");
 
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+
+        txtSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSaldoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -64,12 +77,12 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSaldo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,16 +211,23 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        array.agregar(Integer.parseInt(txtNumero.getText()));
-        txtNumero.setText("");
-        txtNumero.requestFocus();
-        array.mostrar(lista);
-        lstNumeros.setModel(lista);
+        String codigo, nombre;
+        double saldo;
+        codigo = txtCodigo.getText();
+        nombre = txtNombre.getText();
+        saldo = Double.parseDouble(txtSaldo.getText());
+        Cliente cliente = new Cliente(codigo, nombre, saldo);
+        vector.agregar(cliente);
+        vector.mostrar(tabla1);
+        tblClientes.setModel(tabla1);
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtSaldo.setText("");
+        txtCodigo.requestFocus();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        array.ordenar();
-        array.mostrar(lista);
+        
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -215,10 +235,16 @@ public class FrmEjercicio03 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        array.mostrar(modelo, txtCodigoBuscar.getText());
-        txtCodigo.setText("");
-        tblCliente.setModel(modelo);
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSaldoActionPerformed
 
     /**
      * @param args the command line arguments
