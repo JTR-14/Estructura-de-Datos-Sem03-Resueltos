@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmEjercicio01 extends javax.swing.JFrame {
 
    DefaultTableModel modelo = new DefaultTableModel(new String[]{"Código", "Nombre", "Apellido"}, 0);
-    ArrayListAlumno array = new ArrayListAlumno();
+    VectorAlumno vector = new VectorAlumno();
     public FrmEjercicio01() {
         initComponents();
         
@@ -184,12 +184,11 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String codigo, nombre, apellido;
-        double nota;
         codigo = txtCodigo.getText();
         nombre = txtNombre.getText();
         apellido = txtApellido.getText();
         Alumno alumno = new Alumno(codigo, nombre, apellido);
-        array.agregar(alumno);
+        vector.agregar(alumno);
         txtCodigo.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
@@ -198,7 +197,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        array.mostrar(modelo, txtCodigoBuscar.getText());
+        vector.mostrar(modelo, txtCodigoBuscar.getText());
         txtCodigo.setText("");
         tblAlumnos.setModel(modelo);
     }//GEN-LAST:event_btnBuscarActionPerformed

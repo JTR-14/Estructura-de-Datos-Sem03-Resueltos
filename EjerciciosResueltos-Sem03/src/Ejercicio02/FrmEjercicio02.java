@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class FrmEjercicio02 extends javax.swing.JFrame {
 
     DefaultListModel lista = new DefaultListModel();
-    ArrayListNumeros array = new ArrayListNumeros();
+    VectorNumeros vector = new VectorNumeros();
     public FrmEjercicio02() {
         initComponents();
     }
@@ -136,16 +136,16 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        array.agregar(Integer.parseInt(txtNumero.getText()));
+        vector.agregar(Integer.parseInt(txtNumero.getText()));
         txtNumero.setText("");
         txtNumero.requestFocus();
-        array.mostrar(lista);
+        vector.mostrar(lista);
         lstNumeros.setModel(lista);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
-        array.ordenar();
-        array.mostrar(lista);
+        vector.ordenar();
+        vector.mostrar(lista);
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -153,11 +153,11 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       int numeroEncontrado = array.mostrarEncontrado(Integer.parseInt(txtCodigoBuscar.getText()));
+       int numeroEncontrado = vector.mostrarEncontrado(Integer.parseInt(txtCodigoBuscar.getText()));
        if(numeroEncontrado!=-1)
-       JOptionPane.showMessageDialog(null, "El numero "+numeroEncontrado+" se encuentra dentro del ArrayList");
+       JOptionPane.showMessageDialog(null, "El numero "+numeroEncontrado+" se encuentra dentro del Vector");
        else
-       JOptionPane.showMessageDialog(null,"El numero no se encuentra en el ArrayList","ERROR",0);
+       JOptionPane.showMessageDialog(null,"El numero no se encuentra en el Vector","ERROR",0);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
